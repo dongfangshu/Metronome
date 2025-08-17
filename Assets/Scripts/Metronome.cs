@@ -30,9 +30,7 @@ public class Metronome : MonoBehaviour
         new BeatPattern(3, 4, "3/4"),
         new BeatPattern(2, 4, "2/4"),
         new BeatPattern(3, 8, "3/8"),
-        //6/8
         new BeatPattern(6, 8, "6/8"),
-        //7/8
         new BeatPattern(7, 8, "7/8"),
     };
     const int MinBPM = 40; // 最小BPM
@@ -104,11 +102,7 @@ public class Metronome : MonoBehaviour
     void ChangeBPM(int delta)
     {
         bpm = Mathf.Clamp(bpm + delta, MinBPM, MaxBPM);
-        bpmText.text = bpm.ToString();
-        UpdateInterval();
-        ResetMetronome();
-        PlayerPrefs.SetInt(BMP_PREF_KEY, bpm);
-        PlayerPrefs.Save();
+        bpmSlider.value = bpm; // 更新滑动条
     }
 
     void ToggleMetronome()
@@ -144,7 +138,7 @@ public class Metronome : MonoBehaviour
     void UpdateInterval() {
         interval = 60f / bpm;
         //输出bmp 和节拍信息
-        Debug.Log($"BPM: {bpm}, Beats Per Measure: {beatsPerMeasure}, Beat Note: {beatNote}, Interval: {interval} seconds");
+        //Debug.Log($"BPM: {bpm}, Beats Per Measure: {beatsPerMeasure}, Beat Note: {beatNote}, Interval: {interval} seconds");
     }
     void ClearDots()
     {
